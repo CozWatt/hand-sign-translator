@@ -1,0 +1,260 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Sign Translator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .video-container {
+            border: 5px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .sign-list {
+            width: 250px;
+            max-height: 480px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .sign-item {
+            background: rgba(255, 255, 255, 0.3);
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1>🤖 Live Hand Sign Translator</h1>
+            <p>Show your hand gestures and see the predictions in real-time!</p>
+            <div class="video-container">
+                <img id="video-feed" src="" width="640" height="480" class="img-fluid">
+            </div>
+            <div class="buttons">
+                <button id="start-btn" class="btn btn-success">Start Camera</button>
+                <button id="stop-btn" class="btn btn-danger" disabled>Stop Camera</button>
+            </div>
+        </div>
+        <div class="sign-list" id="sign-list">
+            <h3>Detected Signs</h3>
+        </div>
+    </div>
+    <footer>Built by Anas</footer>
+
+    <script>
+        const videoFeed = document.getElementById('video-feed');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const signList = document.getElementById('sign-list');
+
+        startBtn.addEventListener('click', () => {
+            videoFeed.src = "{{ url_for('video_feed') }}";
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+        });
+
+        stopBtn.addEventListener('click', () => {
+            videoFeed.src = "";
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        });
+
+        function addSign(sign) {
+            const signItem = document.createElement('div');
+            signItem.className = 'sign-item';
+            signItem.innerText = sign;
+            signList.appendChild(signItem);
+            localStorage.setItem('detectedSigns', JSON.stringify([...getStoredSigns(), sign]));
+        }
+
+        function getStoredSigns() {
+            return JSON.parse(localStorage.getItem('detectedSigns')) || [];
+        }
+
+        function loadStoredSigns() {
+            const storedSigns = getStoredSigns();
+            storedSigns.forEach(sign => addSign(sign));
+        }
+
+        loadStoredSigns();
+    </script>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hand Sign Translator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+        }
+        .video-container {
+            border: 5px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .sign-list {
+            width: 250px;
+            max-height: 480px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .sign-item {
+            background: rgba(255, 255, 255, 0.3);
+            margin-bottom: 5px;
+            padding: 5px;
+            border-radius: 5px;
+            color: #000;
+        }
+        .buttons {
+            margin-top: 10px;
+        }
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>🤖 Live Hand Sign Translator</h1>
+    <p>Show your hand gestures and see the predictions in real-time!</p>
+
+    <div class="container">
+        <div>
+            <div class="video-container">
+                <img id="video-feed" src="" width="640" height="480" alt="Live video feed" />
+            </div>
+            <div class="buttons">
+                <button id="start-btn" class="btn btn-success">Start Camera</button>
+                <button id="stop-btn" class="btn btn-danger" disabled>Stop Camera</button>
+            </div>
+        </div>
+
+        <div class="sign-list" id="sign-list">
+            <h3>Detected Signs</h3>
+            <!-- Detected signs will appear here -->
+        </div>
+    </div>
+
+    <footer>Built by Anas</footer>
+
+    <script>
+        const videoFeed = document.getElementById('video-feed');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+        const signList = document.getElementById('sign-list');
+
+        // Start showing the video feed
+        startBtn.addEventListener('click', () => {
+            videoFeed.src = "{{ url_for('video_feed') }}";
+            startBtn.disabled = true;
+            stopBtn.disabled = false;
+
+            // Clear previous signs when starting fresh
+            signList.querySelectorAll('.sign-item').forEach(item => item.remove());
+            localStorage.removeItem('detectedSigns');
+        });
+
+        // Stop the video feed
+        stopBtn.addEventListener('click', () => {
+            videoFeed.src = "";
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        });
+
+        // This function is for you to add detected signs dynamically if your backend sends them.
+        // Otherwise, you can integrate your prediction logic here (via WebSocket or periodic fetch).
+        function addSign(sign) {
+            const signItem = document.createElement('div');
+            signItem.className = 'sign-item';
+            signItem.innerText = sign;
+            signList.appendChild(signItem);
+            // Store signs locally
+            localStorage.setItem('detectedSigns', JSON.stringify([...getStoredSigns(), sign]));
+        }
+
+        function getStoredSigns() {
+            return JSON.parse(localStorage.getItem('detectedSigns')) || [];
+        }
+
+        function loadStoredSigns() {
+            const storedSigns = getStoredSigns();
+            storedSigns.forEach(sign => addSign(sign));
+        }
+
+        loadStoredSigns();
+
+        // Note: To display live predictions, you need to implement a way for the backend to send predicted signs
+        // (via WebSocket or polling). This front-end just manages the UI for the live stream.
+
+    </script>
+</body>
+</html>
