@@ -73,7 +73,7 @@ The **Hand Sign Translator** is a real-time web-based application that detects h
   -> Dawood Anas
   -> B.Tech CSE(AI), Annamacharya Institute Of Technology and Science
 
----------------------------------------------------------------------- THANK YOU :) ----------------------------------------------------------------------------
+---------------------------------------------------------------------- THANK YOU :) -----------------------------------------------------------------------
 
 
 
