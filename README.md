@@ -1,79 +1,112 @@
-# hand-sign-translator
+# ✋ Hand Sign Translator
 
-The **Hand Sign Translator** is a real-time web-based application that detects hand signs using a webcam and translates them into text and speech. Built with Flask, MediaPipe, TensorFlow, and OpenCV, this app can be used to assist individuals with hearing or speech impairments.
-
----
-
-# Features
-
-- Real-time hand detection using MediaPipe
-- Hand sign classification with a trained CNN model
-- Speech output using `pyttsx3`
-- Live webcam feed with OpenCV
-- Web-based interface using Flask
+The **Hand Sign Translator** is a real-time, web-based application that uses a webcam to detect hand signs and translate them into both **text and speech**. It is built with **Flask**, **MediaPipe**, **TensorFlow**, and **OpenCV**, and is designed to assist individuals with hearing or speech impairments.
 
 ---
 
-# 📂 Project Structure
- HandSignTranslator/
+## 🚀 Features
+
+- 📸 Real-time hand detection using **MediaPipe**
+- 🤖 Hand sign classification with a **trained CNN model**
+- 🔊 Speech output using **pyttsx3**
+- 🖥️ Live webcam feed with **OpenCV**
+- 🌐 User-friendly web interface built with **Flask**
+
+---
+
+## 📁 Project Structure
+
+```
+HandSignTranslator/
 │
-├── app.py # Main Flask app
-├── hand_sign_model.h5 # Trained CNN model
-├── class_names.txt # List of class labels
+├── app.py                 # Main Flask application
+├── hand_sign_model.h5     # Trained CNN model
+├── class_names.txt        # List of hand sign labels (classes)
 ├── templates/
-│ └── index.html # Frontend HTML page
-├── preprocess_images.py # (Preprocessing script - optional)
-├── split_dataset.py # (Dataset splitting script - optional)
-├── train_cnn_model.py # (Model training script)
-└── README.md # Project documentation
+│   └── index.html         # Frontend HTML page
+├── preprocess_images.py   # Optional image preprocessing script
+├── split_dataset.py       # Optional dataset splitting script
+├── train_cnn_model.py     # Script for training the CNN model
+└── README.md              # Project documentation
+```
+
+---
+
+## ⚙️ Installation
+
+### 🔧 1. Install Dependencies
+
+If you have a `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+Or manually install the main packages:
+
+```bash
+pip install flask opencv-python mediapipe tensorflow pyttsx3
+```
+
+---
+
+## 🧠 Model Info
+
+- The CNN model (`hand_sign_model.h5`) is trained to recognize hand signs.
+- The corresponding class labels are stored in `class_names.txt` (one per line).
+
+---
+
+## 🏃 How to Run the App
+
+1. **Clone the repository** or copy the files to your system.
+2. **Run the Flask server:**
+
+```bash
+python app.py
+```
+
+3. **Open the app in your browser:**
+
+```
+http://localhost:5000
+```
+
+---
+
+## 🔍 How It Works
+
+1. Captures video frames from the webcam using **OpenCV**
+2. Detects hands in the frame using **MediaPipe**
+3. Extracts and preprocesses the hand region
+4. Feeds the preprocessed image into the **trained TensorFlow model**
+5. Displays the predicted sign on the screen
+6. Converts the prediction into speech using **pyttsx3**
+
+---
+
+## 📝 Notes
+
+- 🎥 Ensure your **webcam** is connected and accessible.
+- 📈 You can improve prediction accuracy by retraining the model with better or more data.
+- 💡 Future improvements:
+  - Add **gesture control**
+  - Add **multilingual support**
+  - Add **user authentication or prediction history**
+
+---
+
+## 📄 License
+
+This project is intended for **educational purposes** and is open to community contributions and enhancements.
+
+---
+
+## 👤 Author
+
+**Dawood Anas**  
 
 
 ---
 
-## ⚙️ Requirements
-
-# Install dependencies using pip:
-  pip install -r requirements.txt
-
-# If you don’t have a requirements.txt, here are the main packages:
-  pip install flask opencv-python mediapipe tensorflow pyttsx3
-
-# Model
-  The CNN model (hand_sign_model.h5) is trained to recognize hand signs.
-
-  Class labels are stored in class_names.txt, one per line.
-
-
-# How to Run
-  Clone the repository or copy the files.
-
-  Start the app:
-  1) python app.py
-  2) Open in browser:
-  3) Navigate to http://localhost:5000 in your web browser.
-
-
-# How It Works
-  1) Captures webcam frames using OpenCV
-  2) Detects hands with MediaPipe
-  3) Preprocesses the hand region
-  4) Predicts the sign using the loaded TensorFlow model
-  5) Displays the prediction on-screen
-  6) Converts the prediction to speech using pyttsx3
-
-# Note : 
-  1) Make sure your webcam is accessible.
-  2) You can improve accuracy by training a better model.
-  3) Extend it with gesture control or multilingual support!
-
-# License
-  -> This project is for educational purposes and open to improvement and extension.
-
-# Author
-  -> Dawood Anas
-  -> B.Tech CSE(AI), Annamacharya Institute Of Technology and Science
-
----------------------------------------------------------------------- THANK YOU :) -----------------------------------------------------------------------
-
-
-
+###  Thank You for Visiting!
